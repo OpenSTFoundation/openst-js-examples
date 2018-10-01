@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @fileoverview Base Class of PerformerBase Classes for easy logging.
+ * @fileoverview This class is boilerplate for Example Programs. They should inherit from this class.
  * @author rachin@ost.com (Rachin Kapoor)
  */
 
@@ -21,14 +21,21 @@ class PerformerBase {
 
     let provider = config.gethRpcEndPoint;
     //Create Object of openst.js.
-    this.openSt = new OpenST(provider);
-    this.web3 = this.openSt.web3();
+    this.openST = new OpenST(provider);
+    this.web3 = this.openST.web3();
 
     //Add Geth Signer Service so that we can unlock and sign using deployerAddress.
-    let gethSigner = new this.openSt.utils.GethSignerService(this.web3);
+    let gethSigner = new this.openST.utils.GethSignerService(this.web3);
     let passphrase = 'testtest';
     gethSigner.addAccount(config.deployerAddress, passphrase);
-    this.openSt.signers.setSignerService(gethSigner);
+    gethSigner.addAccount(config.organizationAddress, passphrase);
+    gethSigner.addAccount(config.facilitator, passphrase);
+    gethSigner.addAccount(config.chainOwnerAddress, passphrase);
+    gethSigner.addAccount(config.opsAddress, passphrase);
+    gethSigner.addAccount(config.wallet1, passphrase);
+    gethSigner.addAccount(config.wallet2, passphrase);
+
+    this.openST.signers.setSignerService(gethSigner);
   }
 
   setConfigPath(configInPath) {
