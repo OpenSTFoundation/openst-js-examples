@@ -35,7 +35,6 @@ let openST = new OpenST(provider);
 
 let deployerAddress = config.deployerAddress;
 let passphrase = 'testtest';
-let organizationAddress = config.organizationAddress;
 
 let deployParams = {
   from: deployerAddress,
