@@ -40,6 +40,7 @@ class Performer extends PerformerBase {
 
 let fileName = 'deployMockToken.js';
 const program = require('commander').usage('');
+program.parse(process.argv);
 
 let performer = new Performer(program);
 performer.deploy();
