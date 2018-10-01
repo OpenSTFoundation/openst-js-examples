@@ -133,7 +133,6 @@ class Performer {
       //Check if JSON
       if ((a.indexOf('{') === 0 && a.indexOf('}') === a.length - 1) || (a.indexOf('[') === 0 && a.indexOf(']') === a.length - 1)) {
         try {
-          console.log(a);
           args[len] = JSON.parse(a);
         } catch (e) {
           //Ignore.
@@ -213,35 +212,35 @@ class Performer {
 let fileName = 'deployContract.js';
 const program = require('commander')
   .usage('[constructor_arguments...] [options]')
-  .option('-a, --abi <file>', 'Required. Path to smart-contract Abi file.')
-  .option('-b, --bin <file>', 'Required. Path to smart-contract bin file.')
+  .option('-a, --abi <file>', 'Required. Path to smart-contract Abi (Application Binary Interface) file.')
+  .option('-b, --bin <file>', 'Required. Path to smart-contract Bin (Binary) file.')
   .option('-c, --config <path to openst-setup folder>', 'defaults to ./openst-setup/config.json');
 
 program.on('--help', function() {
   console.log('');
   console.log('');
 
-  console.log('  \x1b[1m No Constructor Argument :\x1b[0m');
+  console.log('  \x1b[1m Deploy contract without any constructor arguments :\x1b[0m');
   console.log(
     `   $ node ${fileName} -a ./node_modules/\\@openstfoundation/openst.js/contracts/abi/MockToken.abi -b ./node_modules/\\@openstfoundation/openst.js/contracts/bin/MockToken.bin`
   );
   console.log('');
   console.log('');
-  console.log('  \x1b[1m Multiple Constructor Arguments:\x1b[0m');
+  console.log('  \x1b[1m Deploy contract with multiple constructor arguments:\x1b[0m');
   console.log(
-    `   $ node ${fileName} 0x00ebec794aa82bc98e753865a5ed9f339c8fd81d 0xe34d081dC576B04DDEDAf1087BB803dea256AE89 -a ./node_modules/\\@openstfoundation/openst.js/contracts/abi/TokenRules.abi -b ./node_modules/\\@openstfoundation/openst.js/contracts/bin/TokenRules.bin`
+    `   $ node ${fileName} 0x00ebec794aa82bc98e753865a5ed9f339c8fd81d 0xe34d081dC576B04DDEDAf1087BB803dea256AE89 \x1b[2m -a ./node_modules/\\@openstfoundation/openst.js/contracts/abi/TokenRules.abi -b ./node_modules/\\@openstfoundation/openst.js/contracts/bin/TokenRules.bin \x1b[0m`
   );
   console.log('');
   console.log('');
-  console.log('  \x1b[1m Single Constructor Argument:\x1b[0m');
+  console.log('  \x1b[1m Deploy contract with single constructor argument:\x1b[0m');
   console.log(
-    `   $ node ${fileName} 0xa502c51c8213A4e61Dc59dF914e252EB6354A8c0 -a ./node_modules/\\@openstfoundation/openst.js/contracts/abi/TransferRule.abi -b ./node_modules/\\@openstfoundation/openst.js/contracts/bin/TransferRule.bin`
+    `   $ node ${fileName} 0xa502c51c8213A4e61Dc59dF914e252EB6354A8c0 \x1b[2m -a ./node_modules/\\@openstfoundation/openst.js/contracts/abi/TransferRule.abi -b ./node_modules/\\@openstfoundation/openst.js/contracts/bin/TransferRule.bin \x1b[0m`
   );
   console.log('');
   console.log('');
-  console.log('  \x1b[1m Passing JSON Argument:\x1b[0m');
+  console.log('  \x1b[1m Deploy contract with an argument of type array:\x1b[0m');
   console.log(
-    `   $ node ${fileName} 0x00ebec794aa82bc98e753865a5ed9f339c8fd81d 0xa502c51c8213A4e61Dc59dF914e252EB6354A8c0 2 '["0xbba2c47be3add4fd302d9a8122442ca9d65ad9a3","0x39e76d2c955462674cd2dab10dbf46135dd2af24"]' -a ./node_modules/\\@openstfoundation/openst.js/contracts/abi/TokenHolder.abi -b ./node_modules/\\@openstfoundation/openst.js/contracts/bin/TokenHolder.bin`
+    `   $ node ${fileName} \x1b[2m 0x00ebec794aa82bc98e753865a5ed9f339c8fd81d 0xa502c51c8213A4e61Dc59dF914e252EB6354A8c0 2 \x1b[0m\x1b[1m '["0xbba2c47be3add4fd302d9a8122442ca9d65ad9a3","0x39e76d2c955462674cd2dab10dbf46135dd2af24"]' \x1b[0m\x1b[2m -a ./node_modules/\\@openstfoundation/openst.js/contracts/abi/TokenHolder.abi -b ./node_modules/\\@openstfoundation/openst.js/contracts/bin/TokenHolder.bin \x1b[0m`
   );
 
   console.log('');
