@@ -16,6 +16,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "@openstfoundation/openst.js": "git+https://github.com/OpenSTFoundation/openst.js.git#develop",
     "bignumber.js": "4.1.0",
     "path": "0.12.7",
     "web3": "1.0.0-beta.34"
