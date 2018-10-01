@@ -18,6 +18,7 @@
   "dependencies": {
     "@openstfoundation/openst.js": "git+https://github.com/OpenSTFoundation/openst.js.git#develop",
     "bignumber.js": "4.1.0",
+    "os": "0.1.1",
     "path": "0.12.7",
     "web3": "1.0.0-beta.34"
   },

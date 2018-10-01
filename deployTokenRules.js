@@ -11,14 +11,17 @@ if (typeof program.erc20Address !== 'string') {
 
 let erc20Address = program.erc20Address;
 
-let config = require('./node_modules/@openstfoundation/openst.js/test/utils/configReader'),
+const os = require('os');
+let configFilePath = os.homedir() + '/openst-setup/config.json';
+
+let config = require(configFilePath),
   provider = config.gethRpcEndPoint;
 
 const OpenST = require('@openstfoundation/openst.js');
 let openST = new OpenST(provider);
 
 let deployerAddress = config.deployerAddress;
-let passphrase = config.passphrase;
+let passphrase = 'testtest';
 let organizationAddress = config.organizationAddress;
 
 let deployParams = {
