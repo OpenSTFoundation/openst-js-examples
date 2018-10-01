@@ -13,6 +13,7 @@ class Performer extends PerformerBase {
   constructor(program) {
     super(program);
     let config = this.getSetupConfig();
+    let openST = this.openST;
 
     let contractArgs = this.parseArguments(program.args || []),
       jsonInterfacePath = program.abi,
@@ -32,8 +33,8 @@ class Performer extends PerformerBase {
   }
 
   deploy() {
-    //1. Get web3 object from openst.
-    let web3 = this.openSt.web3();
+    //1. Get web3 object from openST.
+    let web3 = this.openST.web3();
 
     //2. Create an instance of contract.
     let contract = new web3.eth.Contract(this.jsonInterface);
