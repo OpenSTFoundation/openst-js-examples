@@ -11,7 +11,7 @@ if (typeof program.erc20Address !== 'string') {
 
 let erc20Address = program.erc20Address;
 
-let config = require('../node_modules/@openstfoundation/openst.js/test/utils/configReader'),
+let config = require('./node_modules/@openstfoundation/openst.js/test/utils/configReader'),
   provider = config.gethRpcEndPoint;
 
 const OpenST = require('@openstfoundation/openst.js');
