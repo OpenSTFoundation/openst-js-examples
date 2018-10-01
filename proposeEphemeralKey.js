@@ -44,10 +44,13 @@ tokenHolder
     gasPrice: config.gasPrice,
     gas: config.gas
   })
-  .then(function(submitAuthorizeSession1Response) {
-    if (submitAuthorizeSession1Response.events.SessionAuthorizationSubmitted) {
+  .then(function(submitAuthorizeSessionResponse) {
+    if (submitAuthorizeSessionResponse.events.SessionAuthorizationSubmitted) {
       console.log('submitAuthorizeSession DONE!');
+      let transactionId =
+        submitAuthorizeSessionResponse.events.SessionAuthorizationSubmitted.returnValues._transactionId;
+      console.log('transactionId for submitAuthorizeSession', transactionId);
     } else {
-      console.log('Error in submitAuthorizeSession');
+      console.log('Error in submitAuthorizeSession.');
     }
   });
