@@ -2,7 +2,7 @@
 
 /**
  * @fileoverview Nodejs Program to deploy MockToken.
- * Contract: https://github.com/OpenSTFoundation/mosaic-contracts/blob/v0.9.3-rc1/contracts/SimpleToken/MockToken.sol.
+ * Contract: https://github.com/OpenSTFoundation/mosaic-contracts/blob/v0.9.3-rc1/contracts/SimpleToken/MockToken.sol
  * @author kedar@ost.com (Kedar Chandrayan)
  */
 
@@ -39,7 +39,10 @@ class Performer extends PerformerBase {
 }
 
 let fileName = 'deployMockToken.js';
-const program = require('commander').usage('');
+const program = require('commander')
+  .usage('')
+  .option('-h, --history <file>', 'defaults to ./openst-setup/history.log. Path to history.log file. You can always lookup history for address and logs.')
+  .option('-c, --config <file>', 'defaults to ./openst-setup/config.json. Path to openst-setup config.json file.');
 program.parse(process.argv);
 
 let performer = new Performer(program);
