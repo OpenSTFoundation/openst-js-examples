@@ -1,6 +1,6 @@
 'use strict';
 /**
- * @fileoverview Nodejs Program to deploy TokenHolder Contract.
+ * @fileoverview Nodejs Program to deploy TokenHolder Contract. See deploy method for sample code.
  * Contract: https://github.com/OpenSTFoundation/openst-contracts/blob/develop/contracts/TokenHolder.sol
  * @author kedar@ost.com (Kedar Chandrayan)
  */
@@ -112,9 +112,10 @@ program
 
 program.on('--help', function() {
   console.log('');
-  console.log('Example:');
+  console.log('  Example:');
+  console.log('');
   console.log(
-    'node deployTokenHolder.js -e 0x00ebec794aa82bc98e753865a5ed9f339c8fd81d -t 0xa502c51c8213A4e61Dc59dF914e252EB6354A8c0 -r 2 -w 0xbba2c47be3add4fd302d9a8122442ca9d65ad9a3,0x39e76d2c955462674cd2dab10dbf46135dd2af24'
+    '    node deployTokenHolder.js -e 0x00ebec794aa82bc98e753865a5ed9f339c8fd81d -t 0xa502c51c8213A4e61Dc59dF914e252EB6354A8c0 -r 2 -w 0xbba2c47be3add4fd302d9a8122442ca9d65ad9a3,0x39e76d2c955462674cd2dab10dbf46135dd2af24'
   );
   console.log('');
   console.log('');

@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @fileoverview Nodejs Program to deploy MockToken.
+ * @fileoverview Nodejs Program to deploy MockToken. See deploy method for sample code.
  * Contract: https://github.com/OpenSTFoundation/mosaic-contracts/blob/v0.9.3-rc1/contracts/SimpleToken/MockToken.sol
  * @author kedar@ost.com (Kedar Chandrayan)
  */
