@@ -5,8 +5,6 @@
  * @author kedar@ost.com (Kedar Chandrayan)
  */
 
-const program = require('commander');
-
 const PerformerBase = require('./PerformerBase');
 class Performer extends PerformerBase {
   constructor(program) {
@@ -21,12 +19,17 @@ class Performer extends PerformerBase {
       gas: config.gas
     };
 
-    (this.erc20Address = program.erc20Address),
-      (this.tokenRulesAddress = program.tokenRulesAddress),
-      (this.requirement = program.requirement),
-      (this.wallets = program.wallets);
+    this.erc20Address = program.erc20Address;
+    this.tokenRulesAddress = program.tokenRulesAddress;
+    this.requirement = program.requirement;
+    this.wallets = program.wallets;
 
     this.validate();
+
+    this.log('ERC20 Address:', this.erc20Address);
+    this.log('TokenRules Address:', this.tokenRulesAddress);
+    this.log('requirement', this.requirement);
+    this.log('wallets', this.wallets.join(','));
   }
 
   deploy() {
@@ -34,7 +37,7 @@ class Performer extends PerformerBase {
     let deployer = new this.openST.Deployer(this.deployParams);
 
     //2. Deploy MockToken.
-    this.log('Deploying MockToken');
+    this.log('Deploying TokenHolder Contract');
     deployer.deployTokenHolder(this.erc20Address, this.tokenRulesAddress, this.requirement, this.wallets).then((receipt) => {
       this.logReceipt(receipt);
       if (receipt.status && receipt.contractAddress) {
@@ -102,6 +105,7 @@ function parseWalletList(val) {
   return a;
 }
 
+const program = require('commander');
 program
   .option('-e, --erc20-address [erc20Address]', 'ERC20 Token contract address')
   .option('-t, --token-rules-address [tokenRulesAddress]', 'TokenRules contract address')
@@ -115,7 +119,7 @@ program.on('--help', function() {
   console.log('  Example:');
   console.log('');
   console.log(
-    '    node deployTokenHolder.js -e 0x00ebec794aa82bc98e753865a5ed9f339c8fd81d -t 0xa502c51c8213A4e61Dc59dF914e252EB6354A8c0 -r 2 -w 0xbba2c47be3add4fd302d9a8122442ca9d65ad9a3,0x39e76d2c955462674cd2dab10dbf46135dd2af24'
+    '    node deployTokenHolder.js -e 0x7F8d92283Fa96f9F2FE1596e718584F8aCA70264 -t 0xa502c51c8213A4e61Dc59dF914e252EB6354A8c0 -r 2 -w 0xbba2c47be3add4fd302d9a8122442ca9d65ad9a3,0x39e76d2c955462674cd2dab10dbf46135dd2af24'
   );
   console.log('');
   console.log('');

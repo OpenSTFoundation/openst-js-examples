@@ -137,8 +137,9 @@ class PerformerBase {
   }
 
   log(message) {
-    this.logData['logs'].push(message);
-    console.log(message);
+    let ar = this.logData['logs'];
+    ar.push.apply(ar, arguments);
+    console.log.apply(console, arguments);
   }
 
   /**
