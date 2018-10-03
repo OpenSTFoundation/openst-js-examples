@@ -236,10 +236,7 @@ class PerformerBase {
     const program = require('commander');
 
     program
-      .option(
-        '-l, --log, --history <file>',
-        'defaults to ./openst-setup/history.log. Path to history.log file. You can always lookup history for address and logs.'
-      )
+      .option('-l, --log <file>', 'defaults to ./openst-setup/history.log. Path to history.log file. You can always lookup history for address and logs.')
       .option('-c, --config <file>', 'defaults to ./openst-setup/config.json. Path to openst-setup config.json file.');
 
     return program;

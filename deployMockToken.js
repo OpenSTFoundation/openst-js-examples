@@ -1,7 +1,9 @@
 'use strict';
 
 /**
- * @fileoverview Nodejs Program to deploy MockToken. See deploy method for sample code.
+ * @fileoverview Nodejs Program to deploy MockToken.
+ * See perform method for sample code.
+ *
  * Contract: https://github.com/OpenSTFoundation/mosaic-contracts/blob/v0.9.3-rc1/contracts/SimpleToken/MockToken.sol
  * @author kedar@ost.com (Kedar Chandrayan)
  */
@@ -21,7 +23,7 @@ class Performer extends PerformerBase {
     };
   }
 
-  deploy() {
+  perform() {
     //1. Create a deployer.
     let deployer = new this.openST.Deployer(this.deployParams);
 
@@ -49,4 +51,4 @@ const program = PerformerBase.getProgram();
 program.parse(process.argv);
 
 let performer = new Performer(program);
-performer.deploy();
+performer.perform();

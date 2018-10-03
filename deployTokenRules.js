@@ -1,7 +1,9 @@
 'use strict';
 
 /**
- * @fileoverview Nodejs Program to deploy TokenRules Contract. See deploy method for sample code.
+ * @fileoverview Nodejs Program to deploy TokenRules Contract.
+ * See perform method for sample code.
+ *
  * Contract: https://github.com/OpenSTFoundation/openst-contracts/blob/develop/contracts/TokenRules.sol
  * @author kedar@ost.com (Kedar Chandrayan)
  */
@@ -29,7 +31,7 @@ class Performer extends PerformerBase {
     this.log('Organisation Address:', this.organizationAddress);
   }
 
-  deploy() {
+  perform() {
     //1. Create a deployer.
     let deployer = new this.openST.Deployer(this.deployParams);
 
@@ -73,18 +75,18 @@ class Performer extends PerformerBase {
 const program = PerformerBase.getProgram();
 
 program
-  .option('-e, --erc20-address [erc20Address]', 'Required. ERC20 Token contract address')
-  .option('-o, --org-address [Organisation Address]', 'defaults to config.organizationAddress. Organisation key address');
+  .option('--erc20-address [erc20Address]', 'Required. ERC20 Token contract address')
+  .option('--org-address [Organisation Address]', 'defaults to config.organizationAddress. Organisation key address');
 
 program.on('--help', function() {
   console.log('');
   console.log('  Example:');
   console.log('');
-  console.log('    node deployTokenRules.js -e 0x7F8d92283Fa96f9F2FE1596e718584F8aCA70264');
+  console.log('    node deployTokenRules.js --erc20-address 0x7F8d92283Fa96f9F2FE1596e718584F8aCA70264');
   console.log('');
   console.log('');
 });
 
 program.parse(process.argv);
 let performer = new Performer(program);
-performer.deploy();
+performer.perform();

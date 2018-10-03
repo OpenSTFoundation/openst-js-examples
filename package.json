@@ -16,7 +16,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@openstfoundation/openst.js": "git+https://github.com/rachinkapoor/openst.js.git#openst_0_9_4_develop",
+    "@openstfoundation/openst.js": "0.9.4-beta.1",
     "bignumber.js": "4.1.0",
     "os": "0.1.1",
     "path": "0.12.7",

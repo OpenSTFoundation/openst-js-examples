@@ -1,7 +1,9 @@
 'use strict';
 
 /**
- * @fileoverview Nodejs Program to Confirm Revokation for a Wallet Key in a given TokenHolder Contract. See confirm method for sample code.
+ * @fileoverview Nodejs Program to Confirm Revokation for a Wallet Key in a given TokenHolder Contract.
+ * See perform method for sample code.
+ *
  * Contract: https://github.com/OpenSTFoundation/openst-contracts/blob/develop/contracts/TokenHolder.sol
  * @author kedar@ost.com (Kedar Chandrayan)
  */
@@ -10,7 +12,7 @@ const PerformerBase = require('./PerformerBase');
 class Performer extends PerformerBase {
   constructor(program) {
     super(program);
-    this.tokenHolderAddress = program.tokenHolderAddress;
+    this.tokenHolderAddress = program.tokenHolder;
     this.wallet = program.wallet;
     this.transactionId = program.transactionId;
 
@@ -18,7 +20,7 @@ class Performer extends PerformerBase {
     this.validate();
   }
 
-  confirm() {
+  perform() {
     let openST = this.openST;
     let config = this.getSetupConfig();
     let tokenHolder = new openST.contracts.TokenHolder(this.tokenHolderAddress);
@@ -58,15 +60,17 @@ class Performer extends PerformerBase {
 
 const program = require('commander');
 program
-  .option('-t, --token-holder-address [tokenHolderAddress]', 'TokenHolder contract address')
-  .option('-w, --wallet [wallet]', 'Wallet address')
-  .option('-i, --transaction-id [transactionId]', 'Transaction id');
+  .option('--token-holder [tokenHolder]', 'TokenHolder contract address')
+  .option('--wallet [wallet]', 'Wallet address')
+  .option('--transaction-id [transactionId]', 'Transaction id');
 
 program.on('--help', () => {
   console.log('');
   console.log('  Example:');
   console.log('');
-  console.log('    node confirmRevokeWalletKey.js -t 0xf8c9018DEA785A7cc8A59fE1F8A64B6f64f060cD -w 0x39e76d2c955462674cd2dab10dbf46135dd2af24 -i 2');
+  console.log(
+    '    node confirmRevokeWalletKey.js --token-holder 0xf8c9018DEA785A7cc8A59fE1F8A64B6f64f060cD --wallet 0x39e76d2c955462674cd2dab10dbf46135dd2af24 --transaction-id 2'
+  );
   console.log('');
   console.log('');
 });
@@ -74,4 +78,4 @@ program.on('--help', () => {
 program.parse(process.argv);
 
 let performer = new Performer(program);
-performer.confirm();
+performer.perform();

@@ -1,7 +1,9 @@
 'use strict';
 
 /**
- * @fileoverview Nodejs Program to propose add wallet in a given TokenHolder Contract. See propose method for sample code.
+ * @fileoverview Nodejs Program to propose add wallet in a given TokenHolder Contract.
+ * See perform method for sample code.
+ *
  * Contract: https://github.com/OpenSTFoundation/openst-contracts/blob/develop/contracts/TokenHolder.sol
  * @author kedar@ost.com (Kedar Chandrayan)
  */
@@ -12,7 +14,7 @@ class Performer extends PerformerBase {
   constructor(program) {
     super(program);
 
-    this.tokenHolderAddress = program.tokenHolderAddress;
+    this.tokenHolderAddress = program.tokenHolder;
     this.walletToPropose = program.walletToPropose;
     this.wallet = program.wallet;
 
@@ -20,7 +22,7 @@ class Performer extends PerformerBase {
     this.validate();
   }
 
-  propose() {
+  perform() {
     let openST = this.openST;
     let config = this.getSetupConfig();
     let tokenHolder = new openST.contracts.TokenHolder(this.tokenHolderAddress);
@@ -63,16 +65,16 @@ class Performer extends PerformerBase {
 
 const program = PerformerBase.getProgram();
 program
-  .option('-t, --token-holder-address [tokenHolderAddress]', 'TokenHolder contract address')
-  .option('-p, --wallet-to-propose [walletToPropose]', 'Wallet to propose')
-  .option('-w, --wallet [wallet]', 'Wallet address');
+  .option('--token-holder [tokenHolder]', 'TokenHolder contract address')
+  .option('--wallet-to-propose [walletToPropose]', 'Wallet to propose')
+  .option('--wallet [wallet]', 'Wallet address');
 
 program.on('--help', () => {
   console.log('');
   console.log('  Example:');
   console.log('');
   console.log(
-    '    node proposeWalletKey.js -t 0x3D7bb53A5d731B157554E32a6499162070365C06 -p 0xea674fdde714fd979de3edf0f56aa9716b898ec8 -w 0xe7817ce78558ca0e43f11a975acc6027eb845a5a'
+    '    node proposeWalletKey.js --token-holder 0x3D7bb53A5d731B157554E32a6499162070365C06 --wallet-to-propose 0xea674fdde714fd979de3edf0f56aa9716b898ec8 --wallet 0xe7817ce78558ca0e43f11a975acc6027eb845a5a'
   );
   console.log('');
   console.log('');
@@ -81,4 +83,4 @@ program.on('--help', () => {
 program.parse(process.argv);
 
 let performer = new Performer(program);
-performer.propose();
+performer.perform();

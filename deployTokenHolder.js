@@ -1,6 +1,8 @@
 'use strict';
 /**
- * @fileoverview Nodejs Program to deploy TokenHolder Contract. See deploy method for sample code.
+ * @fileoverview Nodejs Program to deploy TokenHolder Contract.
+ * See perform method for sample code.
+ *
  * Contract: https://github.com/OpenSTFoundation/openst-contracts/blob/develop/contracts/TokenHolder.sol
  * @author kedar@ost.com (Kedar Chandrayan)
  */
@@ -20,7 +22,7 @@ class Performer extends PerformerBase {
     };
 
     this.erc20Address = program.erc20Address;
-    this.tokenRulesAddress = program.tokenRulesAddress;
+    this.tokenRulesAddress = program.tokenRules;
     this.requirement = program.requirement;
     this.wallets = program.wallets;
 
@@ -32,7 +34,7 @@ class Performer extends PerformerBase {
     this.log('wallets', this.wallets.join(','));
   }
 
-  deploy() {
+  perform() {
     //1. Create a deployer.
     let deployer = new this.openST.Deployer(this.deployParams);
 
@@ -113,17 +115,17 @@ function parseWalletList(val) {
 
 const program = PerformerBase.getProgram();
 program
-  .option('-e, --erc20-address [erc20Address]', 'ERC20 Token contract address')
-  .option('-t, --token-rules-address [tokenRulesAddress]', 'TokenRules contract address')
-  .option('-r, --requirement [requirement]', 'Requirement for the multisig operations', parseInt)
-  .option('-w, --wallets <items>', 'Comma-Separated (without space) List of wallet addresses', parseWalletList);
+  .option('--erc20-address [erc20Address]', 'ERC20 Token contract address')
+  .option('--token-rules [tokenRules]', 'TokenRules contract address')
+  .option('--requirement [requirement]', 'Requirement for the multisig operations', parseInt)
+  .option('--wallets <items>', 'Comma-Separated (without space) List of wallet addresses', parseWalletList);
 
 program.on('--help', function() {
   console.log('');
   console.log('  Example:');
   console.log('');
   console.log(
-    '    node deployTokenHolder.js -e 0x7F8d92283Fa96f9F2FE1596e718584F8aCA70264 -t 0xa502c51c8213A4e61Dc59dF914e252EB6354A8c0 -r 2 -w 0xbba2c47be3add4fd302d9a8122442ca9d65ad9a3,0x39e76d2c955462674cd2dab10dbf46135dd2af24'
+    '    node deployTokenHolder.js --erc20-address 0x7F8d92283Fa96f9F2FE1596e718584F8aCA70264 --token-rules 0xa502c51c8213A4e61Dc59dF914e252EB6354A8c0 --requirement 2 --wallets 0xbba2c47be3add4fd302d9a8122442ca9d65ad9a3,0x39e76d2c955462674cd2dab10dbf46135dd2af24'
   );
   console.log('');
   console.log('');
@@ -131,4 +133,4 @@ program.on('--help', function() {
 
 program.parse(process.argv);
 let performer = new Performer(program);
-performer.deploy();
+performer.perform();
