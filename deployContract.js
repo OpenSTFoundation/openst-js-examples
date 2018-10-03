@@ -57,7 +57,8 @@ class Performer extends PerformerBase {
           }
         })
         .catch((reason) => {
-          this.exitWithError(reason);
+          this.logError(e);
+          this.exitWithError('Failed to deploy contract. See error for details.');
         });
     } catch (e) {
       this.logError(e);
@@ -103,7 +104,7 @@ const program = require('commander')
   .usage('[constructor_arguments...] [options]')
   .option('-a, --abi [file]', 'Required. Path to smart-contract Abi (Application Binary Interface) file.')
   .option('-b, --bin [file]', 'Required. Path to smart-contract Bin (Binary) file.')
-  .option('-h, --history <file>', 'defaults to ./openst-setup/history.log. Path to history.log file. You can always lookup history for address and logs.')
+  .option('-ht, --history <file>', 'defaults to ./openst-setup/history.log. Path to history.log file. You can always lookup history for address and logs.')
   .option('-c, --config <file>', 'defaults to ./openst-setup/config.json. Path to openst-setup config.json file.');
 
 program.on('--help', function() {

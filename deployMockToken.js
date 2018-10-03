@@ -27,22 +27,25 @@ class Performer extends PerformerBase {
 
     //2. Deploy MockToken.
     this.log('Deploying MockToken');
-    deployer.deployERC20Token().then((receipt) => {
-      this.logReceipt(receipt);
-      if (receipt.status && receipt.contractAddress) {
-        this.exitWithoutError('MockToken Contract Address:', receipt.contractAddress);
-      } else {
-        this.exitWithError('Failed to deploy MockToken. See receipt for details.');
-      }
-    });
+    deployer
+      .deployERC20Token()
+      .then((receipt) => {
+        this.logReceipt(receipt);
+        if (receipt.status && receipt.contractAddress) {
+          this.exitWithoutError('MockToken Contract Address:', receipt.contractAddress);
+        } else {
+          this.exitWithError('Failed to deploy MockToken. See receipt for details.');
+        }
+      })
+      .catch((reason) => {
+        this.logError(reason);
+        this.exitWithError('Failed to deploy contract. See error for details.');
+      });
   }
 }
 
 let fileName = 'deployMockToken.js';
-const program = require('commander')
-  .usage('')
-  .option('-h, --history <file>', 'defaults to ./openst-setup/history.log. Path to history.log file. You can always lookup history for address and logs.')
-  .option('-c, --config <file>', 'defaults to ./openst-setup/config.json. Path to openst-setup config.json file.');
+const program = PerformerBase.getProgram();
 program.parse(process.argv);
 
 let performer = new Performer(program);

@@ -38,14 +38,20 @@ class Performer extends PerformerBase {
 
     //2. Deploy MockToken.
     this.log('Deploying TokenHolder Contract');
-    deployer.deployTokenHolder(this.erc20Address, this.tokenRulesAddress, this.requirement, this.wallets).then((receipt) => {
-      this.logReceipt(receipt);
-      if (receipt.status && receipt.contractAddress) {
-        this.exitWithoutError('TokenHolder Contract Address:', receipt.contractAddress);
-      } else {
-        this.exitWithError('Failed to deploy TokenHolder. See receipt for details.');
-      }
-    });
+    deployer
+      .deployTokenHolder(this.erc20Address, this.tokenRulesAddress, this.requirement, this.wallets)
+      .then((receipt) => {
+        this.logReceipt(receipt);
+        if (receipt.status && receipt.contractAddress) {
+          this.exitWithoutError('TokenHolder Contract Address:', receipt.contractAddress);
+        } else {
+          this.exitWithError('Failed to deploy TokenHolder. See receipt for details.');
+        }
+      })
+      .catch((reason) => {
+        this.logError(reason);
+        this.exitWithError('Failed to deploy contract. See error for details.');
+      });
   }
 
   validate() {
@@ -105,14 +111,12 @@ function parseWalletList(val) {
   return a;
 }
 
-const program = require('commander');
+const program = PerformerBase.getProgram();
 program
   .option('-e, --erc20-address [erc20Address]', 'ERC20 Token contract address')
   .option('-t, --token-rules-address [tokenRulesAddress]', 'TokenRules contract address')
   .option('-r, --requirement [requirement]', 'Requirement for the multisig operations', parseInt)
-  .option('-w, --wallets <items>', 'Comma-Separated (without space) List of wallet addresses', parseWalletList)
-  .option('-h, --history <file>', 'defaults to ./openst-setup/history.log. Path to history.log file. You can always lookup history for address and logs.')
-  .option('-c, --config <file>', 'defaults to ./openst-setup/config.json. Path to openst-setup config.json file.');
+  .option('-w, --wallets <items>', 'Comma-Separated (without space) List of wallet addresses', parseWalletList);
 
 program.on('--help', function() {
   console.log('');

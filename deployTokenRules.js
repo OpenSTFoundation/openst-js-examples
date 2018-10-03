@@ -35,14 +35,20 @@ class Performer extends PerformerBase {
 
     //2. Deploy MockToken.
     this.log('Deploying TokenRules Contract');
-    deployer.deployTokenRules(this.organizationAddress, this.erc20Address).then((receipt) => {
-      this.logReceipt(receipt);
-      if (receipt.status && receipt.contractAddress) {
-        this.exitWithoutError('TokenRules Contract Address:', receipt.contractAddress);
-      } else {
-        this.exitWithError('Failed to deploy TokenRules. See receipt for details.');
-      }
-    });
+    deployer
+      .deployTokenRules(this.organizationAddress, this.erc20Address)
+      .then((receipt) => {
+        this.logReceipt(receipt);
+        if (receipt.status && receipt.contractAddress) {
+          this.exitWithoutError('TokenRules Contract Address:', receipt.contractAddress);
+        } else {
+          this.exitWithError('Failed to deploy TokenRules. See receipt for details.');
+        }
+      })
+      .catch((reason) => {
+        this.logError(reason);
+        this.exitWithError('Failed to deploy contract. See error for details.');
+      });
   }
 
   validate() {
@@ -64,13 +70,11 @@ class Performer extends PerformerBase {
   }
 }
 
-const program = require('commander');
+const program = PerformerBase.getProgram();
 
 program
   .option('-e, --erc20-address [erc20Address]', 'Required. ERC20 Token contract address')
-  .option('-o, --org-address [Organisation Address]', 'defaults to config.organizationAddress. Organisation key address')
-  .option('-h, --history <file>', 'defaults to ./openst-setup/history.log. Path to history.log file. You can always lookup history for address and logs.')
-  .option('-c, --config <file>', 'defaults to ./openst-setup/config.json. Path to openst-setup config.json file.');
+  .option('-o, --org-address [Organisation Address]', 'defaults to config.organizationAddress. Organisation key address');
 
 program.on('--help', function() {
   console.log('');

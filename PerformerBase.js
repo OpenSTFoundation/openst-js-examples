@@ -226,6 +226,16 @@ class PerformerBase {
     console.log('\n\n', '==========\x1b[1m END-OF-PROGRAM \x1b[0m==========', '\n\n');
     process.exit(0);
   }
+
+  static getProgram() {
+    const program = require('commander');
+
+    program
+      .option('-ht, --history <file>', 'defaults to ./openst-setup/history.log. Path to history.log file. You can always lookup history for address and logs.')
+      .option('-c, --config <file>', 'defaults to ./openst-setup/config.json. Path to openst-setup config.json file.');
+
+    return program;
+  }
 }
 
 module.exports = PerformerBase;
