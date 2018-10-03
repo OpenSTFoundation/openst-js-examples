@@ -166,7 +166,7 @@ class PerformerBase {
    * @param {string} message - Message to be logged.
    */
   logError(message) {
-    console.error('\x1b[0m', '\x1b[31m', message, '\x1b[0m');
+    console.error('\x1b[0m', '\x1b[31m', message || '', '\x1b[0m');
   }
 
   /**
@@ -176,7 +176,7 @@ class PerformerBase {
    * @param {string} message - Success message to be logged.
    */
   logSuccess(subject, message) {
-    console.info('\x1b[0m', '\x1b[32m', subject, '\x1b[0m', '\x1b[1m', message, '\x1b[0m');
+    console.info('\x1b[0m', '\x1b[32m', subject, '\x1b[0m', '\x1b[1m', message || '', '\x1b[0m');
   }
 
   /**
@@ -210,6 +210,7 @@ class PerformerBase {
    * @param {string} message - Success message to be logged.
    */
   exitWithoutError(subject, message) {
+    message = message || '';
     if (subject || message) {
       console.log('\n\n', '==========\x1b[32m SUCCESS \x1b[0m==========', '\n\n');
       this.logSuccess(subject, message);
