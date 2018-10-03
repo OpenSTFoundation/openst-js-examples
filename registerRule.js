@@ -48,7 +48,7 @@ class Performer extends PerformerBase {
       })
       .catch((reason) => {
         this.logError(reason);
-        this.exitWithError('Failed to deploy contract. See error for details.');
+        this.exitWithError('Failed to register rule. See error for details.');
       });
   }
 
