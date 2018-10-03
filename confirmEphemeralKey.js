@@ -34,12 +34,13 @@ class Performer extends PerformerBase {
         this.logReceipt(receipt);
         if (receipt.status) {
           if (receipt.events.TransactionExecutionSucceeded) {
-            this.exitWithoutError('Transaction Executed and Succeeded', receipt.events.TransactionExecutionSucceeded);
+            this.logReceiptEvent(receipt, 'TransactionExecutionSucceeded', 2);
+            this.exitWithoutError('Transaction Executed and Succeeded');
           } else if (receipt.events.TransactionExecutionFailed) {
-            this.logError(receipt.events.TransactionExecutionFailed);
+            this.logReceiptEvent(receipt, 'TransactionExecutionFailed', 1);
             this.exitWithError('Failed to Execute Transaction. See TransactionExecutionFailed event for details.');
           } else if (receipt.events.TransactionConfirmed) {
-            this.logSuccess('Transaction Confirmed:', receipt.events.TransactionConfirmed);
+            this.logReceiptEvent(receipt, 'TransactionConfirmed');
             this.exitWithoutError('Transaction Confirmed. More Confirmations Needed.');
           }
         } else {
