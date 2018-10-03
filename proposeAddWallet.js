@@ -40,9 +40,12 @@ tokenHolder
     gasPrice: config.gasPrice,
     gas: config.gas
   })
-  .then(function(submitWalletReceipt) {
-    if (submitWalletReceipt.events.WalletAdditionSubmitted) {
+  .then(function(submitAddWalletReceipt) {
+    if (submitAddWalletReceipt.events.WalletAdditionSubmitted) {
       console.log('submitAddWallet DONE!');
+
+      let transactionId = submitAddWalletReceipt.events.WalletAdditionSubmitted.returnValues._transactionId;
+      console.log('transactionId for submitAddWallet', transactionId);
     } else {
       console.log('Error in submitAddWallet.');
     }
