@@ -61,7 +61,7 @@ program.on('--help', () => {
   console.log('  Example:');
   console.log('');
   console.log(
-    '    node proposeAddWallet.js -t 0x3D7bb53A5d731B157554E32a6499162070365C06 -p 0xea674fdde714fd979de3edf0f56aa9716b898ec8 -w 0xe7817ce78558ca0e43f11a975acc6027eb845a5a'
+    '    node proposeWalletKey.js -t 0x3D7bb53A5d731B157554E32a6499162070365C06 -p 0xea674fdde714fd979de3edf0f56aa9716b898ec8 -w 0xe7817ce78558ca0e43f11a975acc6027eb845a5a'
   );
   console.log('');
   console.log('');

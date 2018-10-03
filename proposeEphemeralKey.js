@@ -35,7 +35,7 @@ class Performer extends PerformerBase {
         this.logReceipt(receipt);
         if (receipt.status && receipt.events.SessionAuthorizationSubmitted) {
           this.logSuccess('SessionAuthorizationSubmitted Event:', receipt.events.SessionAuthorizationSubmitted);
-          this.exitWithoutError('Transaction Id:', receipt.events.SessionAuthorizationSubmitted.returnValues._transactionId);
+          this.exitWithoutError('Transaction Id:', receipt.events.SessionAuthorizationSubmitted.returnValues._transactionID);
         } else {
           this.exitWithError('Failed to Confirm Transaction. See receipt for details.');
         }

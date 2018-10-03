@@ -39,7 +39,7 @@ class Performer extends PerformerBase {
     //2. Deploy MockToken.
     this.log('Deploying TokenHolder Contract');
     deployer
-      .deployTokenHolder(this.erc20Address, this.tokenRulesAddress, this.requirement, this.wallets)
+      .deployTokenHolder(this.erc20Address, this.tokenRulesAddress, this.wallets, this.requirement)
       .then((receipt) => {
         this.logReceipt(receipt);
         if (receipt.status && receipt.contractAddress) {
