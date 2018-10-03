@@ -23,6 +23,11 @@ OR
 
 ```
 
+* Create and fund key
+```
+  node createAndFundKey.js --data-dir ./openst-setup/origin-geth
+```
+
 
 * Deploy MockToken (ERC20)
 ```
