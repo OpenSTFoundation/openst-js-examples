@@ -87,7 +87,7 @@ class Performer extends PerformerBase {
 
     let wallets = this.wallets || [],
       len = wallets.length;
-    if (bnRequirement.cmp(utils.toBN(len))) {
+    if (bnRequirement.cmp(utils.toBN(len)) > 0) {
       let error = new Error(`Please provide atleast ${bnRequirement.toString(10)} wallet address(s) using -w or --wallets flag.`);
       this.exitWithError(error);
       return;

@@ -33,10 +33,21 @@ class Performer extends PerformerBase {
         gas: config.gas
       })
       .then((receipt) => {
-        this.logReceipt(receipt);
-        if (receipt.status && receipt.events.WalletAdditionSubmitted) {
-          this.logSuccess('WalletAdditionSubmitted Event:', receipt.events.WalletAdditionSubmitted);
-          this.exitWithoutError('Transaction Id:', receipt.events.WalletAdditionSubmitted.returnValues._transactionID);
+        if (receipt.status) {
+          if (receipt.events.TransactionExecutionSucceeded) {
+            this.logReceiptEvent(receipt, 'TransactionExecutionSucceeded', 2);
+            this.exitWithoutError('Transaction Executed and Succeeded');
+          } else if (receipt.events.TransactionExecutionFailed) {
+            this.logReceiptEvent(receipt, 'TransactionExecutionFailed', 1);
+            this.exitWithError('Failed to Execute Transaction. See TransactionExecutionFailed event for details.');
+          } else if (receipt.events.WalletAdditionSubmitted) {
+            this.logReceiptEvent(receipt, 'WalletAdditionSubmitted');
+
+            this.exitWithoutError(
+              'Wallet addition submitted. More Confirmations Needed.\n',
+              'transaction id: ' + receipt.events.WalletAdditionSubmitted.returnValues._transactionID
+            );
+          }
         } else {
           this.exitWithError('Failed to Confirm Transaction. See receipt for details.');
         }
