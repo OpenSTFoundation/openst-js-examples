@@ -99,3 +99,8 @@ OR
 ```
   node executeRule.js --token-holder 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --ephemeral-private-key 0x9db95f8c2cad4e69f734b210435028a0f0a079ddb885413035c21aebc93a4b38 --rule transfer --method transferFrom --method-args '["0x8c74004d0687140f29CE6c1da126ae0dd948e126", "0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5", 1]'
 ```
+
+* Fund Mock Token
+```
+  node fundMockToken.js --erc20-address 0x7CeB0bC15B7d34f9C26A35A2a0ed6c6308A9827b --to-address 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --amount 100000000000000000000000
+```
