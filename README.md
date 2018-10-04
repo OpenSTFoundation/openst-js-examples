@@ -1,30 +1,43 @@
 # openst-js-examples
 
+This repository contains an example usage of openst.js where we walk you through registering rules, adding users, adding wallets to users, revoking ephemeral keys and other functionality in the context of a token economy.
+
+This example walks you through the
+
+
+## Basic Set Up
+In this section, we go through the environment setup required to get started with deploying contracts and interacting with them.
+
 ### NPM install
-Install dependency packages.
+To ensure that you have all the files needed to run this node.js application, Install dependency packages.
 ```
   $ npm install
 ```
 
 ### Start Geth
-Option 1 - Do a fresh setup.
+To connect to ethereum, you'll need a client running. Here, we use Geth.
+You could either start a fresh, new geth OR start an existing one (assuming one isn't already running)
+
+In order to set up a new Geth, use the following command:
 ```
   $ node ./node_modules/\@openstfoundation/openst.js/tools/initDevEnv.js 
 ```
 
-Option 2 - Start existing Geth, if not already running.
+Alternatively, to start an existing Geth:
 ```
   $ sh ./openst-setup/bin/run-chain.sh
 ```
 
 ## Economy Setup
-
-### Deploy MockToken (EIP20)
+The economy setup includes deploying a Token, the rules associated with the transactions in the economy, and the TokenRules contract which enforces the business rules defined in the Rule contracts.
+### Deploy an EIP20 Token
+The first step to getting a Token Economy started is to deploy a token to use as the currency of the economy.
+Using the command below, you can deploy an EIP20 Token (currently, the MockToken)
 ```
   $ node deployMockToken.js
 ```
 
-Copy the **MockToken Contract Address** printed in the logs in the command below in place of **0x123...**.
+Please use the **MockToken Contract Address** printed in the logs and in the command below in place of **0x123...**.
 
 ```
   $ eip20ContractAddress=0x123...
@@ -33,33 +46,36 @@ Copy the **MockToken Contract Address** printed in the logs in the command below
 For more options use `$ node deployMockToken.js -h`
 
 
-### Deploy TokenRules
+### Deploy the TokenRules Contract
+Every Token Economy needs a TokenRules contract that performs the transactions in accordance with the Rules registered in it by the Organization.
+
 ```
   $ node deployTokenRules.js --eip20-address $eip20ContractAddress
 ```
 
-Copy the **TokenRules Contract Address** printed in the logs in the command below in place of **0x123...**.
+Use the **TokenRules Contract Address** printed in the logs in the command below in place of **0x123...**.
 
 ```
   $ tokenRulesContractAddress=0x123...
 ```
 
-For more options use `$ node deployTokenRules.js -h`
+For documentation and options, enter `$ node deployTokenRules.js -h`
 
-### Deploy Custom Rule
+### Deploy Transfer Rule
+The TokenRules and Rule contracts are designed to enable an economy administrator to add rules that are aligned with their goals. Here, we deploy a simple TransferRule contract to enable transfers between economy participants.
 ```
-  $ node deployContract.js --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi --bin ./node_modules/@openstfoundation/openst.js/contracts/bin/TransferRule.bin $tokenRulesContractAddress
+  node deployContract.js --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi --bin ./node_modules/@openstfoundation/openst.js/contracts/bin/TransferRule.bin $tokenRulesContractAddress
 
 ```
 
-Copy the **Deployed Contract Address** printed in the logs in the command below in place of **0x123...**.
+Use the **Deployed Contract Address** printed in the logs in the command below in place of **0x123...**.
 
 ```
   $ customRuleContractAddress=0x123...
   $ ruleName=transfer
 ```
 
-For more options use `$ node deployContract.js -h`
+You can access documentation and options by typing  `$ node deployContract.js -h`
 
 ### Register Rule
 
