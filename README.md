@@ -1,4 +1,4 @@
-# openst-js-examples
+# openst.js Examples
 
 This repository contains an example usage of openst.js where we walk you through registering rules, adding users, adding wallets to users, revoking ephemeral keys and other functionality in the context of a token economy.
 
@@ -8,7 +8,7 @@ This example walks you through the
 ## Basic Set Up
 In this section, we go through the environment setup required to get started with deploying contracts and interacting with them.
 
-### NPM install
+### NPM Install
 To ensure that you have all the files needed to run this node.js application, Install dependency packages.
 ```
   npm install
@@ -61,7 +61,7 @@ Use the **TokenRules Contract Address** printed in the logs in the command below
 
 For documentation and options, use `node deployTokenRules.js -h`
 
-### Deploy Transfer Rule
+### Deploy TransferRule
 The TokenRules and Rule contracts are designed to enable an economy administrator to add rules that are aligned with their goals. Here, we deploy a simple TransferRule contract to enable transfers between economy participants.
 ```
   node deployContract.js --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi --bin ./node_modules/@openstfoundation/openst.js/contracts/bin/TransferRule.bin $tokenRulesContractAddress
