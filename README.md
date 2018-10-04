@@ -1,6 +1,6 @@
-# openst.js Examples
+# OpenST.js Examples
 
-This repository contains an example usage of openst.js where we walk you through registering rules, adding users, adding wallets to users, revoking ephemeral keys and other functionality in the context of a token economy.
+This repository contains an example usage of OpenST.js where we walk you through registering rules, adding users, adding wallets to users, revoking ephemeral keys and other functionality in the context of a token economy.
 
 This example walks you through the
 
