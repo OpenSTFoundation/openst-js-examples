@@ -70,7 +70,7 @@ For more options use `$ node deployContract.js -h`
 ## User Setup
 
 ### Deploy TokenHolder
-Copy wallet addresses from ./openst-setup/config.json in the following commands.
+Copy wallet addresses from `cat ./openst-setup/config.json` in the following commands.
 
 ```
   $ wallet1=0x123...
@@ -80,6 +80,13 @@ Copy wallet addresses from ./openst-setup/config.json in the following commands.
 ```
   $ node deployTokenHolder.js --erc20-address $erc20ContractAddress --token-rules $tokenRulesContractAddress --requirement $requirement --wallets $wallet1,$wallet2
 ```
+Copy the **TokenHolder Contract Address** printed in the logs in the command below in place of **0x123...**.
+
+```
+  $ tokenHolderContractAddress=0x123...
+```
+
+For more options use `$ node deployTokenHolder.js -h`
 
 * Propose Ephemeral Key
 ```
