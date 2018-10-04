@@ -99,9 +99,11 @@ Copy the **address** and **privateKey** printed in the logs in the command below
   $ ephemeralPrivateKey=0x456...
 ```
 
-* Propose Ephemeral Key
+### Propose Ephemeral Key
 ```
-  node proposeEphemeralKey.js --token-holder 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --ephemeral-key 0x2d803d6644a2b54212cf273f89ea6fa6f8355976 --wallet 0xe7817ce78558ca0e43f11a975acc6027eb845a5a --spending-limit 1000000000000000000000000000 --expiration-height 10000000000000
+  $ spendingLimit=1000000000000000000000000000
+  $ expiryHeight=10000000000000
+  $ node proposeEphemeralKey.js --token-holder $tokenHolderContractAddress --ephemeral-key $ephemeralKey --wallet $wallet1 --spending-limit $spendingLimit --expiration-height $expiryHeight
 ```
 
 * Confirm Ephemeral Key
