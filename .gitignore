@@ -5,6 +5,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+package-lock.json
+
+.idea/
+
 # Runtime data
 pids
 *.pid
@@ -35,6 +39,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+openst-setup/
 
 # TypeScript v1 declaration files
 typings/
@@ -59,3 +64,5 @@ typings/
 
 # next.js build output
 .next
+
+.DS_Store
