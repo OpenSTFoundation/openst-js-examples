@@ -88,10 +88,10 @@ Copy the **TokenHolder Contract Address** printed in the logs in the command bel
 
 For more options use `$ node deployTokenHolder.js -h`
 
-### Create and fund key
-Create a new account and fund it with some ETH. This step can be used for generating the ephemeral key also. Althought the ETH funded to it won't be used.
+### Create Ephemeral Key
+Create a new account.
 ```
-  $ node createAndFundKey.js --data-dir ./openst-setup/origin-geth
+  $ node createEphemeralKey.js
 ```
 Copy the **address** and **privateKey** printed in the logs in the command below in place of **0x123...** and **0x456...** respectively.
 ```
@@ -99,7 +99,7 @@ Copy the **address** and **privateKey** printed in the logs in the command below
   $ ephemeralPrivateKey=0x456...
 ```
 
-For more options use `$ node createAndFundKey.js -h`
+For more options use `$ node createEphemeralKey.js -h`
 
 ### Propose Ephemeral Key
 ```
