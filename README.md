@@ -17,6 +17,8 @@ Option 2 - Start existing Geth, if not already running.
   $ sh ./openst-setup/bin/run-chain.sh
 ```
 
+## Economy Setup
+
 ### Deploy MockToken (ERC20)
 ```
   $ node deployMockToken.js
@@ -62,14 +64,21 @@ For more options use `$ node deployContract.js -h`
 ### Register Rule
 
 ```
-  node registerRule.js --token-rules $tokenRulesContractAddress --rule $ruleName --address $customRuleContractAddress --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi
+  $ node registerRule.js --token-rules $tokenRulesContractAddress --rule $ruleName --address $customRuleContractAddress --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi
 ```
 
+## User Setup
 
+### Deploy TokenHolder
+Copy wallet addresses from ./openst-setup/config.json in the following commands.
 
-* Deploy TokenHolder
 ```
-  node deployTokenHolder.js --erc20-address 0x7CeB0bC15B7d34f9C26A35A2a0ed6c6308A9827b --token-rules 0xC8fA993e4ddF41458FA7b498AEbD5Bb9F840d320 --requirement 2 --wallets "0xe7817ce78558ca0e43f11a975acc6027eb845a5a,0xd9fd651481ec1efd62898686ab41b56b0e8f18d3"
+  $ wallet1=0x123...
+  $ wallet2=0x456...
+  $ requirement=2
+```
+```
+  $ node deployTokenHolder.js --erc20-address $erc20ContractAddress --token-rules $tokenRulesContractAddress --requirement $requirement --wallets $wallet1,$wallet2
 ```
 
 * Propose Ephemeral Key
