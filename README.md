@@ -3,19 +3,18 @@
 ### NPM install
 Install dependency packages.
 ```
-  npm install
-```
-
-### Fresh Setup
-Initialize a new chain and fund certain addresses with ETH.
-```
-  node ./node_modules/\@openstfoundation/openst.js/tools/initDevEnv.js 
+  $ npm install
 ```
 
 ### Start Geth script
-Start Geth.
+Option1 - Do a fresh setup.
 ```
-  sh ./openst-setup/bin/run-chain.sh
+  $ node ./node_modules/\@openstfoundation/openst.js/tools/initDevEnv.js 
+```
+
+Option2 - Start existing Geth, if not already running.
+```
+  $ sh ./openst-setup/bin/run-chain.sh
 ```
 
 ### Create and fund key
