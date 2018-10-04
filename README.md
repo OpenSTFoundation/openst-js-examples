@@ -115,42 +115,71 @@ Copy the **transaction id** printed in the logs in the command below in place of
 
 For more options use `$ node proposeEphemeralKey.js -h`
 
-* Confirm Ephemeral Key
+### Confirm Ephemeral Key
 ```
-  node confirmEphemeralKey.js --token-holder 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --wallet 0xd9fd651481ec1efd62898686ab41b56b0e8f18d3 --transaction-id 0
-```
-
-* Propose Wallet Key
-```
-  node proposeWalletKey.js --token-holder 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --wallet-to-propose 0x52e44f279f4203dcf680395379e5f9990a69f13c --wallet 0xe7817ce78558ca0e43f11a975acc6027eb845a5a
+  $ node confirmEphemeralKey.js --token-holder $tokenHolderContractAddress --wallet $wallet2 --transaction-id $proposeEphemeralKeyTransactionId
 ```
 
-* Confirm Wallet Key
+For more options use `$ node confirmEphemeralKey.js -h`
+
+### Propose Wallet Key
 ```
-  node confirmWalletKey.js --token-holder 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --wallet 0xd9fd651481ec1efd62898686ab41b56b0e8f18d3 --transaction-id 1
+  $ newWallet=0x52e44f279f4203dcf680395379e5f9990a69f13c
+  $ node proposeWalletKey.js --token-holder $tokenHolderContractAddress --wallet-to-propose $newWallet --wallet $wallet1
 ```
 
-* Propose Revoke Wallet Key
+Copy the **transaction id** printed in the logs in the command below in place of **...**.
 ```
-  node proposeRevokeWalletKey.js --token-holder 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --wallet-to-revoke 0x52e44f279f4203dcf680395379e5f9990a69f13c --wallet 0xe7817ce78558ca0e43f11a975acc6027eb845a5a
-```
-
-* Confirm Revoke Wallet Key
-```
-  node confirmRevokeWalletKey.js --token-holder 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --wallet 0xd9fd651481ec1efd62898686ab41b56b0e8f18d3 --transaction-id 2
+  $ proposeWalletKeyTransactionId=...
 ```
 
-* Revoke Ephemeral Key
+For more options use `$ node proposeWalletKey.js -h`
+
+### Confirm Wallet Key
 ```
-  node revokeEphemeralKey.js --token-holder 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --wallet 0xd9fd651481ec1efd62898686ab41b56b0e8f18d3 --ephemeral-key 0x2d803d6644a2b54212cf273f89ea6fa6f8355976
+  $ node confirmWalletKey.js --token-holder $tokenHolderContractAddress --wallet $wallet2 --transaction-id $proposeWalletKeyTransactionId
 ```
 
-* Execute Rule
+For more options use `$ node confirmWalletKey.js -h`
+
+### Propose Revoke Wallet Key
 ```
-  node executeRule.js --token-holder 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --ephemeral-private-key 0x9db95f8c2cad4e69f734b210435028a0f0a079ddb885413035c21aebc93a4b38 --rule transfer --method transferFrom --method-args '["0x8c74004d0687140f29CE6c1da126ae0dd948e126", "0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5", 1]'
+  $ node proposeRevokeWalletKey.js --token-holder $tokenHolderContractAddress --wallet-to-revoke $newWallet --wallet $wallet1
 ```
 
-* Fund Mock Token
+Copy the **transaction id** printed in the logs in the command below in place of **...**.
+
 ```
-  node fundMockToken.js --erc20-address 0x7CeB0bC15B7d34f9C26A35A2a0ed6c6308A9827b --to-address 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --amount 100000000000000000000000
+  $ proposeRevokeWalletKeyTransactionId=...
 ```
+
+For more options use `$ node proposeRevokeWalletKey.js -h`
+
+### Confirm Revoke Wallet Key
+```
+  $ node confirmRevokeWalletKey.js --token-holder $tokenHolderContractAddress --wallet $wallet2 --transaction-id $proposeRevokeWalletKeyTransactionId
+```
+
+For more options use `$ node confirmRevokeWalletKey.js -h`
+
+### Fund Mock Token
+```
+  $ node fundMockToken.js --erc20-address $erc20ContractAddress --to-address $tokenHolderContractAddress --amount 100000000000000000000000
+```
+
+For more options use `$ node fundMockToken.js -h`
+
+### Execute Rule
+```
+  $ dummyRecipient=0x52e44f279f4203dcf680395379e5f9990a69f13c
+  $ node executeRule.js --token-holder $tokenHolderContractAddress --ephemeral-private-key $ephemeralPrivateKey --rule $ruleName --method transferFrom --method-args [\"$tokenHolderContractAddress\", \"$dummyRecipient\", 1]'
+```
+
+For more options use `$ node executeRule.js -h`
+
+### Revoke Ephemeral Key
+```
+  $ node revokeEphemeralKey.js --token-holder $tokenHolderContractAddress --wallet $wallet2 --ephemeral-key $ephemeralKey
+```
+
+For more options use `$ node revokeEphemeralKey.js -h`
