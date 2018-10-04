@@ -108,6 +108,11 @@ For more options use `$ node createAndFundKey.js -h`
   $ node proposeEphemeralKey.js --token-holder $tokenHolderContractAddress --ephemeral-key $ephemeralKey --wallet $wallet1 --spending-limit $spendingLimit --expiration-height $expiryHeight
 ```
 
+Copy the **transaction id** printed in the logs in the command below in place of **...**.
+```
+  $ proposeEphemeralKeyTransactionId=...
+```
+
 For more options use `$ node proposeEphemeralKey.js -h`
 
 * Confirm Ephemeral Key
