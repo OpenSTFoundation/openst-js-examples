@@ -72,7 +72,7 @@ Use the **Deployed Contract Address** printed in the logs in the command below i
 For documentation and options, use `node deployContract.js -h`
 
 ### Register TransferRule
-In order to Execute a rule that is payable, i.e transfers value between users in an economy, the Organization must register the Rule in the TokenRules contract.
+In order to execute a rule, i.e to transfer value between users in an economy, the Organization must register the Rule in the TokenRules contract.
 
 ```
   node registerRule.js --token-rules $tokenRulesContractAddress --rule $ruleName --address $customRuleContractAddress --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi
