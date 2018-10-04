@@ -93,7 +93,7 @@ Create a new account and fund it with some ETH. This step can be used for genera
 ```
   $ node createAndFundKey.js --data-dir ./openst-setup/origin-geth
 ```
-
+Copy the **address** and **privateKey** printed in the logs in the command below in place of **0x123...** and **0x456...** respectively.
 ```
   $ ephemeralKey=0x123...
   $ ephemeralPrivateKey=0x456...
