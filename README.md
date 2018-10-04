@@ -29,28 +29,17 @@ Option 2 - Start existing Geth, if not already running.
 ```
 
 ### Deploy TokenRules
-* Command
 ```
   $ node deployTokenRules.js --erc20-address $erc20ContractAddress
 ```
 
-* Usage
-```  
-  $ deployTokenRules [options]
-  
-  Options:
+Copy the **TokenRules Contract Address** printed in the logs in the command below in place of **0x123...**.
 
-    -h, --help                            output usage information
-    -l, --log <file>                      defaults to ./openst-setup/history.log. Path to history.log file. You can always lookup history for address and logs.
-    -c, --config <file>                   defaults to ./openst-setup/config.json. Path to openst-setup config.json file.
-    --erc20-address [erc20Address]        Required. ERC20 Token contract address
-    --org-address [Organisation Address]  defaults to config.organizationAddress. Organisation key address
-```
-
-* Copy the **TokenRules Contract Address** printed in the logs in the command below in place of **0x123...**.
 ```
   $ tokenRulesContractAddress=0x123...
 ```
+
+For more options use `$ node deployTokenRules -h`
 
 * Deploy Transfer Rule
 ```
