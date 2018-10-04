@@ -88,6 +88,17 @@ Copy the **TokenHolder Contract Address** printed in the logs in the command bel
 
 For more options use `$ node deployTokenHolder.js -h`
 
+### Create and fund key
+Create a new account and fund it with some ETH. This step can be used for generating the ephemeral key also. Althought the ETH funded to it won't be used.
+```
+  $ node createAndFundKey.js --data-dir ./openst-setup/origin-geth
+```
+
+```
+  $ ephemeralKey=0x123...
+  $ ephemeralPrivateKey=0x456...
+```
+
 * Propose Ephemeral Key
 ```
   node proposeEphemeralKey.js --token-holder 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --ephemeral-key 0x2d803d6644a2b54212cf273f89ea6fa6f8355976 --wallet 0xe7817ce78558ca0e43f11a975acc6027eb845a5a --spending-limit 1000000000000000000000000000 --expiration-height 10000000000000
@@ -131,23 +142,4 @@ For more options use `$ node deployTokenHolder.js -h`
 * Fund Mock Token
 ```
   node fundMockToken.js --erc20-address 0x7CeB0bC15B7d34f9C26A35A2a0ed6c6308A9827b --to-address 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --amount 100000000000000000000000
-```
-
-### Create and fund key
-Create a new account and fund it with some ETH.
-```
-  Usage:
-  $ node createAndFundKey [options]
-
-  Options:
-
-    -h, --help            output usage information
-    -l, --log <file>      defaults to ./openst-setup/history.log. Path to history.log file. You can always lookup history for address and logs.
-    -c, --config <file>   defaults to ./openst-setup/config.json. Path to openst-setup config.json file.
-    --data-dir [dataDir]  Data directory of GETH
-
-
-  Example:
-
-    node createAndFundKey.js --data-dir ./openst-setup/origin-geth
 ```
