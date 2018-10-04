@@ -35,6 +35,13 @@ class PerformerBase {
     gethSigner.addAccount(config.wallet1, passphrase);
     gethSigner.addAccount(config.wallet2, passphrase);
 
+    if (config.knownAddresses) {
+      let kAddress;
+      for (kAddress in config.knownAddresses) {
+        gethSigner.addAccount(kAddress, config.knownAddresses[kAddress]);
+      }
+    }
+
     this.openST.signers.setSignerService(gethSigner);
   }
 
@@ -61,6 +68,25 @@ class PerformerBase {
     try {
       configPath = path.resolve(this.configPath);
       return require(configPath);
+    } catch (e) {
+      this.logError(e);
+      let error = new Error(
+        'Invalid Config File Path: ' + (configPath || this.configPath) + '\nPlease provide openst-setup/config.json path using -c or --config flag'
+      );
+      this.exitWithError(error);
+    }
+  }
+
+  addKeyInfoToConfig(address, passphrase) {
+    let config = this.getSetupConfig();
+    let configPath = path.resolve(this.configPath);
+
+    config['knownAddresses'] = config['knownAddresses'] || {};
+    let knownAddresses = config['knownAddresses'];
+    knownAddresses[address] = passphrase;
+    try {
+      let updatedConfig = JSON.stringify(config, null, 1);
+      fs.writeFileSync(configPath, updatedConfig);
     } catch (e) {
       this.logError(e);
       let error = new Error(

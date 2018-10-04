@@ -7,11 +7,14 @@
  * @author kedar@ost.com (Kedar Chandrayan)
  */
 
+let fs = require('fs');
+const path = require('path');
 const PerformerBase = require('./PerformerBase');
 class Performer extends PerformerBase {
   constructor(program) {
     super(program);
-    this.dataDir = program.dataDir;
+    let dataDirPath = program.dataDir || './openst-setup/origin-geth/';
+    this.dataDir = path.resolve(dataDirPath);
 
     this.config = this.getSetupConfig();
 
@@ -28,8 +31,9 @@ class Performer extends PerformerBase {
     let web3 = openST.web3();
 
     let account = web3.eth.accounts.create();
+    this.addKeyInfoToConfig(account.address, passphrase);
 
-    let keystoreObj = web3.eth.accounts.encrypt(account.privateKey, 'testtest');
+    let keystoreObj = web3.eth.accounts.encrypt(account.privateKey, passphrase);
 
     let date = new Date();
 
@@ -55,7 +59,6 @@ class Performer extends PerformerBase {
 
     let keystoreFilePath = this.dataDir + '/keystore/' + filename;
 
-    let fs = require('fs');
     fs.writeFileSync(keystoreFilePath, JSON.stringify(keystoreObj));
 
     await this._fundEthFor(web3, senderAddr, account.address, amount, passphrase);
@@ -64,16 +67,15 @@ class Performer extends PerformerBase {
   }
 
   _fundEthFor(web3, senderAddr, recipient, amount, passphrase) {
-    let gasPrice = this.config.gasprice;
+    let gasPrice = this.config.gasPrice;
     let gas = this.config.gas;
-    return web3.eth.personal.unlockAccount(senderAddr, passphrase).then(function() {
-      return web3.eth.sendTransaction({
-        from: senderAddr,
-        to: recipient,
-        value: amount,
-        gasPrice: gasPrice,
-        gas: gas
-      });
+
+    return web3.eth.sendTransaction({
+      from: senderAddr,
+      to: recipient,
+      value: amount,
+      gasPrice: gasPrice,
+      gas: gas
     });
   }
 
@@ -81,7 +83,7 @@ class Performer extends PerformerBase {
 }
 
 const program = PerformerBase.getProgram();
-program.option('--data-dir [dataDir]', 'Data directory of GETH');
+program.option('--data-dir [dataDir]', 'defaults to ./openst-setup/origin-geth/ Data directory of GETH');
 
 program.on('--help', () => {
   console.log('');

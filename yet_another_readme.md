@@ -118,7 +118,7 @@ proposeTxId=0
 ### 7. Confirm Ephemeral Key
 
 ```
-node confirmEphemeralKey.js --token-holder $tokenHolder --wallet $wallet2 --transaction-id proposeTxId
+node confirmEphemeralKey.js --token-holder $tokenHolder --wallet $wallet2 --transaction-id $proposeTxId
 
 
 ```
