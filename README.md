@@ -47,13 +47,12 @@ OR
 ```
   node deployContract.js --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi --bin ./node_modules/@openstfoundation/openst.js/contracts/bin/TransferRule.bin 0x29cd4E263EFBb2DF4abf237A64394bAf8822eC4c
 
-
 ```
 
 * Register Rule
 
 ```
-
+  node registerRule.js --token-rules 0xC8fA993e4ddF41458FA7b498AEbD5Bb9F840d320 --rule transfer --address 0x80016bA973dbe91395157CA97D7abF9Ca00CC553 --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi
 ```
 
 * Deploy TokenHolder
@@ -96,3 +95,7 @@ OR
   node revokeEphemeralKey.js --token-holder 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --wallet 0xd9fd651481ec1efd62898686ab41b56b0e8f18d3 --ephemeral-key 0x2d803d6644a2b54212cf273f89ea6fa6f8355976
 ```
 
+* Execute Rule
+```
+  node executeRule.js --token-holder 0xFCA1f6b834b5b99f0dB7Fe6586e3dfaAB4C60121 --ephemeral-private-key 0x9db95f8c2cad4e69f734b210435028a0f0a079ddb885413035c21aebc93a4b38 --rule transfer --method transferFrom --method-args '["0x8c74004d0687140f29CE6c1da126ae0dd948e126", "0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5", 1]'
+```
