@@ -44,11 +44,19 @@ Copy the **TokenRules Contract Address** printed in the logs in the command belo
 
 For more options use `$ node deployTokenRules -h`
 
-* Deploy Transfer Rule
+### Deploy Custom Rule
 ```
-  node deployContract.js --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi --bin ./node_modules/@openstfoundation/openst.js/contracts/bin/TransferRule.bin 0x29cd4E263EFBb2DF4abf237A64394bAf8822eC4c
+  node deployContract.js --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi --bin ./node_modules/@openstfoundation/openst.js/contracts/bin/TransferRule.bin $tokenRulesContractAddress
 
 ```
+
+Copy the **TokenRules Contract Address** printed in the logs in the command below in place of **0x123...**.
+
+```
+  $ tokenRulesContractAddress=0x123...
+```
+
+For more options use `$ node deployTokenRules -h`
 
 * Register Rule
 
