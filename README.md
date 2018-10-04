@@ -28,7 +28,7 @@ Copy the **MockToken Contract Address** printed in the logs in the command below
   $ erc20ContractAddress=0x123...
 ```
 
-For more options use `$ node deployMockToken -h`
+For more options use `$ node deployMockToken.js -h`
 
 
 ### Deploy TokenRules
@@ -42,7 +42,7 @@ Copy the **TokenRules Contract Address** printed in the logs in the command belo
   $ tokenRulesContractAddress=0x123...
 ```
 
-For more options use `$ node deployTokenRules -h`
+For more options use `$ node deployTokenRules.js -h`
 
 ### Deploy Custom Rule
 ```
@@ -50,19 +50,22 @@ For more options use `$ node deployTokenRules -h`
 
 ```
 
-Copy the **TokenRules Contract Address** printed in the logs in the command below in place of **0x123...**.
+Copy the **Deployed Contract Address** printed in the logs in the command below in place of **0x123...**.
 
 ```
-  $ tokenRulesContractAddress=0x123...
+  $ customRuleContractAddress=0x123...
+  $ ruleName=transfer
 ```
 
-For more options use `$ node deployTokenRules -h`
+For more options use `$ node deployContract.js -h`
 
-* Register Rule
+### Register Rule
 
 ```
-  node registerRule.js --token-rules 0xC8fA993e4ddF41458FA7b498AEbD5Bb9F840d320 --rule transfer --address 0x80016bA973dbe91395157CA97D7abF9Ca00CC553 --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi
+  node registerRule.js --token-rules $tokenRulesContractAddress --rule $ruleName --address $customRuleContractAddress --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi
 ```
+
+
 
 * Deploy TokenHolder
 ```
