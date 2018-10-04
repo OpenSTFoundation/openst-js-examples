@@ -78,9 +78,13 @@ class Performer extends PerformerBase {
       .then((receipt) => {
         this.logReceipt(receipt);
         if (receipt.status) {
-          this.exitWithoutError('Ab bas. Baki kal.');
+          if (receipt.events.RuleExecuted.returnValues._status) {
+            this.exitWithoutError('Rule Execution Success.');
+          } else {
+            this.exitWithError('Rule Execution Failed. Receipt status is true. But execution status is false.');
+          }
         } else {
-          this.exitWithError('Debug Karo.');
+          this.exitWithError('Rule Execution Failed. Receipt status is false.');
         }
       })
       .catch((reason) => {
