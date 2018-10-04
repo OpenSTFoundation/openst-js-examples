@@ -1,40 +1,49 @@
 # openst-js-examples
 
-* NPM INSTALL
+### NPM install
+Install dependency packages.
 ```
   npm install
-
-
 ```
 
-* Fresh Setup
+### Fresh Setup
+Initialize a new chain and fund certain addresses with ETH.
 ```
   node ./node_modules/\@openstfoundation/openst.js/tools/initDevEnv.js 
-
-
 ```
 
-OR
-
-* Using Existing Setup (Start Geth)
+### Start Geth script
+Start Geth.
 ```
   sh ./openst-setup/bin/run-chain.sh
-
-
 ```
 
-* Create and fund key
+### Create and fund key
+Create a new account and fund it with some ETH.
 ```
-  node createAndFundKey.js --data-dir ./openst-setup/origin-geth
-```
+  Usage:
+  $ node createAndFundKey [options]
+
+  Options:
+
+    -h, --help            output usage information
+    -l, --log <file>      defaults to ./openst-setup/history.log. Path to history.log file. You can always lookup history for address and logs.
+    -c, --config <file>   defaults to ./openst-setup/config.json. Path to openst-setup config.json file.
+    --data-dir [dataDir]  Data directory of GETH
 
 
-* Deploy MockToken (ERC20)
+  Example:
+
+    node createAndFundKey.js --data-dir ./openst-setup/origin-geth
+```
+
+### Deploy MockToken (ERC20)
+* Command
 ```
   node deployMockToken.js
-
-
 ```
+
+* Note down 
 
 * Deploy TokenRules
 ```
