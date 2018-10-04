@@ -19,7 +19,7 @@ Option 2 - Start existing Geth, if not already running.
 
 ## Economy Setup
 
-### Deploy MockToken (ERC20)
+### Deploy MockToken (EIP20)
 ```
   $ node deployMockToken.js
 ```
@@ -27,7 +27,7 @@ Option 2 - Start existing Geth, if not already running.
 Copy the **MockToken Contract Address** printed in the logs in the command below in place of **0x123...**.
 
 ```
-  $ erc20ContractAddress=0x123...
+  $ eip20ContractAddress=0x123...
 ```
 
 For more options use `$ node deployMockToken.js -h`
@@ -35,7 +35,7 @@ For more options use `$ node deployMockToken.js -h`
 
 ### Deploy TokenRules
 ```
-  $ node deployTokenRules.js --erc20-address $erc20ContractAddress
+  $ node deployTokenRules.js --eip20-address $eip20ContractAddress
 ```
 
 Copy the **TokenRules Contract Address** printed in the logs in the command below in place of **0x123...**.
@@ -78,7 +78,7 @@ Copy wallet addresses from `cat ./openst-setup/config.json` in the following com
   $ requirement=2
 ```
 ```
-  $ node deployTokenHolder.js --erc20-address $erc20ContractAddress --token-rules $tokenRulesContractAddress --requirement $requirement --wallets $wallet1,$wallet2
+  $ node deployTokenHolder.js --eip20-address $eip20ContractAddress --token-rules $tokenRulesContractAddress --requirement $requirement --wallets $wallet1,$wallet2
 ```
 Copy the **TokenHolder Contract Address** printed in the logs in the command below in place of **0x123...**.
 
@@ -164,7 +164,7 @@ For more options use `$ node confirmRevokeWalletKey.js -h`
 
 ### Fund Mock Token
 ```
-  $ node fundMockToken.js --erc20-address $erc20ContractAddress --to-address $tokenHolderContractAddress --amount 100000000000000000000000
+  $ node fundMockToken.js --eip20-address $eip20ContractAddress --to-address $tokenHolderContractAddress --amount 100000000000000000000000
 ```
 
 For more options use `$ node fundMockToken.js -h`

@@ -30,7 +30,7 @@ class Performer extends PerformerBase {
     //2. Deploy MockToken.
     this.log('Deploying MockToken');
     deployer
-      .deployERC20Token()
+      .deployEIP20Token()
       .then((receipt) => {
         this.logReceipt(receipt);
         if (receipt.status && receipt.contractAddress) {

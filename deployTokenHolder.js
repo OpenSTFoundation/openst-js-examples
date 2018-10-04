@@ -21,14 +21,14 @@ class Performer extends PerformerBase {
       gas: config.gas
     };
 
-    this.erc20Address = program.erc20Address;
+    this.eip20Address = program.eip20Address;
     this.tokenRulesAddress = program.tokenRules;
     this.requirement = program.requirement;
     this.wallets = program.wallets;
 
     this.validate();
 
-    this.log('ERC20 Address:', this.erc20Address);
+    this.log('EIP20 Address:', this.eip20Address);
     this.log('TokenRules Address:', this.tokenRulesAddress);
     this.log('requirement', this.requirement);
     this.log('wallets', this.wallets.join(','));
@@ -41,7 +41,7 @@ class Performer extends PerformerBase {
     //2. Deploy MockToken.
     this.log('Deploying TokenHolder Contract');
     deployer
-      .deployTokenHolder(this.erc20Address, this.tokenRulesAddress, this.wallets, this.requirement)
+      .deployTokenHolder(this.eip20Address, this.tokenRulesAddress, this.wallets, this.requirement)
       .then((receipt) => {
         this.logReceipt(receipt);
         if (receipt.status && receipt.contractAddress) {
@@ -61,8 +61,8 @@ class Performer extends PerformerBase {
     let web3 = openST.web3();
     let utils = web3.utils;
 
-    if (!utils.isAddress(this.erc20Address)) {
-      let error = 'Invalid ERC20 Contract Address. Please provide ERC20 contract address using -e or --erc20-address flag.';
+    if (!utils.isAddress(this.eip20Address)) {
+      let error = 'Invalid EIP20 Contract Address. Please provide EIP20 contract address using -e or --eip20-address flag.';
       this.exitWithError(error);
       return;
     }
@@ -115,7 +115,7 @@ function parseWalletList(val) {
 
 const program = PerformerBase.getProgram();
 program
-  .option('--erc20-address [erc20Address]', 'ERC20 Token contract address')
+  .option('--eip20-address [eip20Address]', 'EIP20 Token contract address')
   .option('--token-rules [tokenRules]', 'TokenRules contract address')
   .option('--requirement [requirement]', 'Requirement for the multisig operations', parseInt)
   .option('--wallets <items>', 'Comma-Separated (without space) List of wallet addresses', parseWalletList);
@@ -125,7 +125,7 @@ program.on('--help', function() {
   console.log('  Example:');
   console.log('');
   console.log(
-    '    node deployTokenHolder.js --erc20-address 0x7F8d92283Fa96f9F2FE1596e718584F8aCA70264 --token-rules 0xa502c51c8213A4e61Dc59dF914e252EB6354A8c0 --requirement 2 --wallets 0xbba2c47be3add4fd302d9a8122442ca9d65ad9a3,0x39e76d2c955462674cd2dab10dbf46135dd2af24'
+    '    node deployTokenHolder.js --eip20-address 0x7F8d92283Fa96f9F2FE1596e718584F8aCA70264 --token-rules 0xa502c51c8213A4e61Dc59dF914e252EB6354A8c0 --requirement 2 --wallets 0xbba2c47be3add4fd302d9a8122442ca9d65ad9a3,0x39e76d2c955462674cd2dab10dbf46135dd2af24'
   );
   console.log('');
   console.log('');

@@ -22,12 +22,12 @@ class Performer extends PerformerBase {
       gas: config.gas
     };
 
-    this.erc20Address = program.erc20Address;
+    this.eip20Address = program.eip20Address;
     this.organizationAddress = program.orgAddress || config.organizationAddress;
 
     this.validate();
 
-    this.log('ERC20 Address:', this.erc20Address);
+    this.log('EIP20 Address:', this.eip20Address);
     this.log('Organisation Address:', this.organizationAddress);
   }
 
@@ -38,7 +38,7 @@ class Performer extends PerformerBase {
     //2. Deploy MockToken.
     this.log('Deploying TokenRules Contract');
     deployer
-      .deployTokenRules(this.organizationAddress, this.erc20Address)
+      .deployTokenRules(this.organizationAddress, this.eip20Address)
       .then((receipt) => {
         this.logReceipt(receipt);
         if (receipt.status && receipt.contractAddress) {
@@ -58,8 +58,8 @@ class Performer extends PerformerBase {
     let web3 = openST.web3();
     let utils = web3.utils;
 
-    if (!utils.isAddress(this.erc20Address)) {
-      let error = 'Invalid ERC20 Contract Address. Please provide ERC20 contract address using -e or --erc20-address flag.';
+    if (!utils.isAddress(this.eip20Address)) {
+      let error = 'Invalid EIP20 Contract Address. Please provide EIP20 contract address using -e or --eip20-address flag.';
       this.exitWithError(error);
       return;
     }
@@ -75,14 +75,14 @@ class Performer extends PerformerBase {
 const program = PerformerBase.getProgram();
 
 program
-  .option('--erc20-address [erc20Address]', 'Required. ERC20 Token contract address')
+  .option('--eip20-address [eip20Address]', 'Required. EIP20 Token contract address')
   .option('--org-address [Organisation Address]', 'defaults to config.organizationAddress. Organisation key address');
 
 program.on('--help', function() {
   console.log('');
   console.log('  Example:');
   console.log('');
-  console.log('    node deployTokenRules.js --erc20-address 0x7F8d92283Fa96f9F2FE1596e718584F8aCA70264');
+  console.log('    node deployTokenRules.js --eip20-address 0x7F8d92283Fa96f9F2FE1596e718584F8aCA70264');
   console.log('');
   console.log('');
 });

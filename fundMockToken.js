@@ -22,7 +22,7 @@ class Performer extends PerformerBase {
       gas: config.gas
     };
 
-    this.erc20Address = program.erc20Address;
+    this.eip20Address = program.eip20Address;
     this.toAddress = program.toAddress;
     this.amount = program.amount;
   }
@@ -33,7 +33,7 @@ class Performer extends PerformerBase {
     const BigNumber = require('bignumber.js');
     let amountToTransferBN = new BigNumber(this.amount);
 
-    let mockToken = new (openST.web3()).eth.Contract(openST.abiBinProvider().getABI('MockToken'), this.erc20Address);
+    let mockToken = new (openST.web3()).eth.Contract(openST.abiBinProvider().getABI('MockToken'), this.eip20Address);
 
     mockToken.methods
       .transfer(this.toAddress, amountToTransferBN.toString(10))
@@ -41,14 +41,14 @@ class Performer extends PerformerBase {
       .then((receipt) => {
         this.logReceipt(receipt);
         if (receipt.status) {
-          this.exitWithoutError('Fund ERC20 Done.');
+          this.exitWithoutError('Fund EIP20 Done.');
         } else {
-          this.exitWithError('Fund ERC20 failed.');
+          this.exitWithError('Fund EIP20 failed.');
         }
       })
       .catch((reason) => {
         this.logError(reason);
-        this.exitWithError('Fund ERC20 failed.');
+        this.exitWithError('Fund EIP20 failed.');
       });
   }
 }
@@ -56,7 +56,7 @@ class Performer extends PerformerBase {
 const program = PerformerBase.getProgram();
 
 program
-  .option('--erc20-address [erc20Address]', 'Required. ERC20 Token contract address')
+  .option('--eip20-address [eip20Address]', 'Required. EIP20 Token contract address')
   .option('--to-address [toAddress]', 'To address')
   .option('--amount [amount]', 'Amount in weis.');
 
@@ -65,7 +65,7 @@ program.on('--help', function() {
   console.log('  Example:');
   console.log('');
   console.log(
-    '    node fundMockToken.js --erc20-address 0x7F8d92283Fa96f9F2FE1596e718584F8aCA70264 --to-address 0x84b0a610C11A9F8DB974CDBe39b855915b42CfD7 --amount 1000000000000000000000'
+    '    node fundMockToken.js --eip20-address 0x7F8d92283Fa96f9F2FE1596e718584F8aCA70264 --to-address 0x84b0a610C11A9F8DB974CDBe39b855915b42CfD7 --amount 1000000000000000000000'
   );
   console.log('');
   console.log('');
