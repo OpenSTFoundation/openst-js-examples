@@ -2,9 +2,6 @@
 
 This repository contains an example usage of OpenST.js where we walk you through registering rules, adding users, adding wallets to users, revoking ephemeral keys and other functionality in the context of a token economy.
 
-This example walks you through the
-
-
 ## Basic Set Up
 In this section, we go through the environment setup required to get started with deploying contracts and interacting with them.
 
@@ -14,16 +11,13 @@ To ensure that you have all the files needed to run this node.js application, In
   npm install
 ```
 
-### Start Geth
-To connect to ethereum, you'll need a client running. Here, we use Geth.
-You could either start a fresh, new geth OR start an existing one (assuming one isn't already running)
-
-In order to set up a new Geth, use the following command:
+### Setup Developer Environment
+To setup a new local chain, use following command. The below command creates a json file (`./openst-setup/config.json`) with all the needed addresses and other constants. It also starts Geth process for the chain.
 ```
   node ./node_modules/\@openstfoundation/openst.js/tools/initDevEnv.js
 ```
 
-Alternatively, to start an existing Geth:
+Start Geth, if not already started:
 ```
   sh ./openst-setup/bin/run-chain.sh
 ```
