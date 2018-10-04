@@ -48,7 +48,7 @@ For more options use `$ node deployTokenRules.js -h`
 
 ### Deploy Custom Rule
 ```
-  node deployContract.js --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi --bin ./node_modules/@openstfoundation/openst.js/contracts/bin/TransferRule.bin $tokenRulesContractAddress
+  $ node deployContract.js --abi ./node_modules/@openstfoundation/openst.js/contracts/abi/TransferRule.abi --bin ./node_modules/@openstfoundation/openst.js/contracts/bin/TransferRule.bin $tokenRulesContractAddress
 
 ```
 
