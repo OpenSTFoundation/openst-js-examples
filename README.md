@@ -34,9 +34,9 @@ Option 2 - Start existing Geth, if not already running.
   $ node deployTokenRules.js --erc20-address $erc20ContractAddress
 ```
 
-* Copy the **MockToken Contract Address** printed in the logs in the command below in place of **0x123...**.
+* Copy the **TokenRules Contract Address** printed in the logs in the command below in place of **0x123...**.
 ```
-  $ erc20ContractAddress=0x123...
+  $ tokenRulesContractAddress=0x123...
 ```
 
 * Deploy Transfer Rule
