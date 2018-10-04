@@ -196,7 +196,8 @@ And one other must confirm the revocation.
 For documentation and options, use `node confirmRevokeWalletKey.js -h`
 
 ### Fund Mock Token
-To execute a transfer between, the Tok
+To execute a transfer, the TokenHolder contract must hold Tokens.
+To fund the contract with some tokens, use the following.
 
 ```
   node fundMockToken.js --eip20-address $eip20ContractAddress --to-address $tokenHolderContractAddress --amount 100000000000000000000000
@@ -204,7 +205,9 @@ To execute a transfer between, the Tok
 
 For documentation and options, use `node fundMockToken.js -h`
 
-### Execute Rule
+### Execute TransferRule
+To execute the Transfer from the TokenHolder to a dummy user, use the following snippet
+
 ```
   dummyRecipient=0x52e44f279f4203dcf680395379e5f9990a69f13c
   node executeRule.js --token-holder $tokenHolderContractAddress --ephemeral-private-key $ephemeralPrivateKey --rule $ruleName --method transferFrom --method-args [\"$tokenHolderContractAddress\",\"$dummyRecipient\",1]
@@ -213,6 +216,8 @@ For documentation and options, use `node fundMockToken.js -h`
 For documentation and options, use `node executeRule.js -h`
 
 ### Revoke Ephemeral Key
+Ephemeral keys can be revoked by any one Wallet key and replaced by new Ephemeral keys that can sign transactions.
+
 ```
   node revokeEphemeralKey.js --token-holder $tokenHolderContractAddress --wallet $wallet2 --ephemeral-key $ephemeralKey
 ```
