@@ -172,7 +172,7 @@ For more options use `$ node fundMockToken.js -h`
 ### Execute Rule
 ```
   $ dummyRecipient=0x52e44f279f4203dcf680395379e5f9990a69f13c
-  $ node executeRule.js --token-holder $tokenHolderContractAddress --ephemeral-private-key $ephemeralPrivateKey --rule $ruleName --method transferFrom --method-args [\"$tokenHolderContractAddress\", \"$dummyRecipient\", 1]'
+  $ node executeRule.js --token-holder $tokenHolderContractAddress --ephemeral-private-key $ephemeralPrivateKey --rule $ruleName --method transferFrom --method-args [\"$tokenHolderContractAddress\",\"$dummyRecipient\",1]
 ```
 
 For more options use `$ node executeRule.js -h`
