@@ -4,7 +4,7 @@
  * @fileoverview Nodejs Program to Confirm Revokation for a Wallet Key in a given TokenHolder Contract.
  * See perform method for sample code.
  *
- * Contract: https://github.com/OpenSTFoundation/openst-contracts/blob/develop/contracts/TokenHolder.sol
+ * Contract: https://github.com/OpenSTFoundation/openst-contracts/blob/v0.9.4/contracts/TokenHolder.sol
  * @author kedar@ost.com (Kedar Chandrayan)
  */
 

@@ -3,7 +3,7 @@
 /**
  * @fileoverview Nodejs Program to execute custom rule using ephemeral-key.
  * See perform() method for sample code.
- * Contract: https://github.com/OpenSTFoundation/openst-contracts/blob/develop/contracts/TokenRules.sol
+ * Contract: https://github.com/OpenSTFoundation/openst-contracts/blob/v0.9.4/contracts/TokenRules.sol
  * @author rachin@ost.com (Rachin Kapoor)
  */
 const PerformerBase = require('./PerformerBase');

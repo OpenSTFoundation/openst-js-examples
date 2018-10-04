@@ -3,7 +3,7 @@
 /**
  * @fileoverview Nodejs Program to register custom rule contract with TokenRules Contract.
  * See perform() method for sample code.
- * Contract: https://github.com/OpenSTFoundation/openst-contracts/blob/develop/contracts/TokenRules.sol
+ * Contract: https://github.com/OpenSTFoundation/openst-contracts/blob/v0.9.4/contracts/TokenRules.sol
  * @author rachin@ost.com (Rachin Kapoor)
  */
 
